@@ -1,4 +1,5 @@
-/* eslint-disable */class Observer {
+/* eslint-disable */
+class Observer {
   constructor (data) {
     this.observe(data)
   }
