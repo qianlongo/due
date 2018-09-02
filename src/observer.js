@@ -10,14 +10,14 @@ class Observer {
     }
 
     Object.keys(data).forEach((key) => {
-      let val = data[ key ]
+      let value = data[ key ]
 
-      this.defineReactive(data, key, val)
-      this.observe(val)
+      this.defineReactive(data, key, value)
+      this.observe(value)
     })
   }
 
-  defineReactive (obj, key, val) {
+  defineReactive (obj, key, value) {
     /* eslint-disable */
     let dep = new Dep()
 
@@ -28,12 +28,12 @@ class Observer {
         /* eslint-disable */
         Dep.target && dep.addSub(Dep.target)
 
-        return val
+        return value
       },
-      set: (newVal) => {
-        if (newVal !== val) {
-          this.observe(newVal)
-          val = newVal
+      set: (newValue) => {
+        if (newValue !== value) {
+          this.observe(newValue)
+          value = newValue
           dep.notify()
         }
       }
