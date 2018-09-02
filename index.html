@@ -14,19 +14,27 @@
 <body>
   <div class="due">
     <div class="mvvm">
-      <p>{{ message }}</p>
+      <h2>mvvm</h2>
+      <p>{{message}}</p>
       <input type="text" v-model="message">
     </div>
-    <div class="data-to-view"></div>
+    <div class="data-to-view">
+      <h2>data-to-view</h2>
+      {{counter}}
+    </div>
   </div> 
   <script>
     let vm = new Due({
       el: '.due',
       data: {
         message: 'hello qianlongo',
-        time: ''
+        counter: 0
       }
     })
+
+    setInterval(() => {
+      vm.counter += 1
+    }, 1000)
   </script> 
 </body>
 </html>

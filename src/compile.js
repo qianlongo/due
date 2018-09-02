@@ -65,7 +65,7 @@ class Compile {
 
     if (reg.test(exp)) {
       /* eslint-disable */
-      compileUtil.text(node, this.vm. exp)
+      compileUtil.text(node, this.vm, exp)
     }
   }
 }
@@ -82,14 +82,14 @@ let compileUtil = {
         len = exp.length
 
     return exp.reduce((result, it, curIndex) => {
-      if (curIndex = len -1) {
+      if (curIndex === len -1) {
         return result[ it ] = newValue
       }
 
       return result[ it ]
     }, vm.$data)
   },
-  getTextVal () {
+  getTextVal (vm, exp) {
     return exp.replace(/\{\{([^}]+)\}\}/g, (...args) => {
       return this.getVal(vm, args[1])
     })
@@ -100,18 +100,18 @@ let compileUtil = {
 
     exp.replace(/\{\{([^}]+)\}\}/g, (...args) => {
       new Watcher(vm, args[ 1 ], (newValue) => {
-        updateFn && updateFn(newValue)
+        updateFn && updateFn(node, newValue)
       })
     })
 
-    updateFn(value)
+    updateFn(node, value)
   },
   model (node, vm, exp) {
     let updateFn = this.updater.modelUpdater
     let value = this.getVal(vm, exp)
 
     new Watcher(vm, exp, (newValue) => {
-      updateFn && updateFn(newValue)
+      updateFn && updateFn(node, newValue)
     })
 
     node.addEventListener('input', (e) => {
@@ -120,7 +120,7 @@ let compileUtil = {
       this.setVal(vm, exp, newValue)
     }, false)
 
-    updateFn && updateFn(value)
+    updateFn && updateFn(node, value)
   },
   updater: {
     textUpdater (node, value) {
