@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 class Dep {
   constructor () {
     this.subs = []
@@ -14,4 +16,3 @@ class Dep {
   }
 }
 
-console.log(Dep)

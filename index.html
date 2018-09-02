@@ -6,7 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>mvvm</title>
 </head>
+<script src="./src/dep.js"></script>
+<script src="./src/watcher.js"></script>
+<script src="./src/observer.js"></script>
+<script src="./src/compile.js"></script>
+<script src="./src/due.js"></script>
 <body>
-  
+  <div class="due">
+    <div class="mvvm">
+      <p>{{ message }}</p>
+      <input type="text" v-model="message">
+    </div>
+    <div class="data-to-view"></div>
+  </div> 
+  <script>
+    let vm = new Due({
+      el: '.due',
+      data: {
+        message: 'hello qianlongo',
+        time: ''
+      }
+    })
+  </script> 
 </body>
 </html>
