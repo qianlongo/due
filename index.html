@@ -24,12 +24,13 @@
     </div>
   </div> 
   <script>
+    let data = {
+      message: 'hello qianlongo',
+      counter: 0
+    }
     let vm = new Due({
       el: '.due',
-      data: {
-        message: 'hello qianlongo',
-        counter: 0
-      }
+      data
     })
 
     setInterval(() => {
